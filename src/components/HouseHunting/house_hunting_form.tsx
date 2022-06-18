@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getFlatData, postFlatData } from '../../apis';
+import React, { useState } from 'react';
+import { postFlatData } from '../../apis';
 import { flatPrimaryInfoInitialState, flatSecondaryInfoInitialState, FlatInfoTab, objectWithTwoBreakStringKeys } from '../../constants';
 import { IFlatPrimaryInfo, IFlatSecondaryInfo } from '../../types/house_hunting.type';
 import Loader from '../loader';
@@ -15,15 +15,10 @@ const HouseHuntingForm: React.FC = () => {
   const submitAnswers = () => {
     setShowLoader(true);
     const finalFormData = { ...flatSecondaryInfo, ...flatPrimaryInfo, ...objectWithTwoBreakStringKeys };
-    const data = Object.entries(finalFormData);
-    postFlatData(data, () => setShowLoader(false));
-  };
+    const actualDataTopSendAs2DArray = Object.entries(finalFormData);
 
-  useEffect(() => {
-    getFlatData((data) => {
-      console.log(data);
-    });
-  }, []);
+    postFlatData(actualDataTopSendAs2DArray, () => setShowLoader(false));
+  };
 
   return (
     <div className="flat_hunting_form_container d-flex-column-center ">

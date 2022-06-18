@@ -74,15 +74,21 @@ code {
 /***** Header section ends *****/
 
 /***** Form Container and Body starts *****/
+.sheet_link {
+  display: flex;
+  color: #009745;
+  margin: 10px;
+  font: 400 16px var(--themeFontFamily);
+}
 .flat_hunting_form_container {
   max-width: 400px;
-  height: calc(100vh - 40vh);
+  position: relative;
+  height: calc(100vh - 25vh);
 }
 .flat_hunting_form_body {
   background: #0b0e15;
   padding: 20px 20px 20px 20px;
   border-radius: 10px;
-  position: relative;
   overflow-y: scroll;
 }
 .flat_hunting_form__body_content {

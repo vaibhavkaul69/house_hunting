@@ -22,12 +22,12 @@ export const flatPrimaryInfoInitialState: IFlatPrimaryInfo = {
 };
 
 export const flatSecondaryInfoInitialState: IFlatSecondaryInfo = {
+  propertyNameOrLink: null,
+  location: null,
   distanceFromOffice: null,
   finalMontlhyRent: null,
   finalDepostiAmount: null,
   finalBrokerCharges: null,
-  propertyNameOrLink: null,
-  location: null,
   brokerInfo: null,
 };
 
@@ -55,6 +55,7 @@ export const commonAmmenetiesForFurnishedAndSemiFurnished = [
 ];
 
 export const flatPrimaryInfoInputDataIfFurnished: Array<IFlatInfoInputData> = [
+  ...commonAmmenetiesForFurnishedAndSemiFurnished,
   {
     text: 'Has TV',
     key: 'hasTv',
@@ -100,10 +101,17 @@ export const flatPrimaryInfoInputDataIfFurnished: Array<IFlatInfoInputData> = [
     text: 'Has Gyesier Installed',
     key: 'hasGyesierInstalled',
   },
-  ...commonAmmenetiesForFurnishedAndSemiFurnished,
 ];
 
 export const flatSecondaryInfoInputData: Array<IFlatInfoInputData> = [
+  {
+    text: 'Property Name / Link',
+    key: 'propertyNameOrLink',
+  },
+  {
+    text: 'Location',
+    key: 'location',
+  },
   {
     text: 'Distance From Office',
     key: 'distanceFromOffice',
@@ -120,14 +128,7 @@ export const flatSecondaryInfoInputData: Array<IFlatInfoInputData> = [
     text: 'Final Broker Charges',
     key: 'finalBrokerCharges',
   },
-  {
-    text: 'Property Name / Link',
-    key: 'propertyNameOrLink',
-  },
-  {
-    text: 'Location',
-    key: 'location',
-  },
+
   {
     text: 'Broker Info',
     key: 'brokerInfo',
@@ -148,5 +149,6 @@ export enum Furnishing {
 
 export const objectWithTwoBreakStringKeys = {
   '*********': '*********',
-  '*****************': '*****************',
+  '*************': '**********',
+  '****************': '************',
 };

@@ -17,7 +17,7 @@ const PrimaryFlatInfoTab: React.FC<IPrimaryFlatIntoTabProp> = React.memo(({ flat
               <button
                 onClick={() => setFlatPrimaryInfo((flatInfo: IFlatPrimaryInfo) => ({ ...flatInfo, [flat.key]: true }))}
                 className={`flat_hunting_form__action_button d-flex-row-center 
-                    ${flatPrimaryInfo[flat.key] == true && 'active_state_btn_bg_color'}
+                    ${flatPrimaryInfo[flat.key] === true && 'active_state_btn_bg_color'}
                 `}
               >
                 Yes
@@ -25,7 +25,7 @@ const PrimaryFlatInfoTab: React.FC<IPrimaryFlatIntoTabProp> = React.memo(({ flat
               <button
                 onClick={() => setFlatPrimaryInfo((flatInfo: IFlatPrimaryInfo) => ({ ...flatInfo, [flat.key]: false }))}
                 className={`flat_hunting_form__action_button d-flex-row-center 
-                    ${flatPrimaryInfo[flat.key] == false && 'active_state_btn_bg_color'}
+                    ${flatPrimaryInfo[flat.key] === false && 'active_state_btn_bg_color'}
                 `}
               >
                 No
