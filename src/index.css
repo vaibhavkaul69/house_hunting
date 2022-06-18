@@ -1,13 +1,205 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+:root {
+  --themeFontFamily: 'Noto Sans', sans-serif;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+/***** Flex layout starts *****/
+.d-flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.d-flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.d-flex-row-just-between-align-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.d-flex-row-just-start-align-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.d-flex-col-just-start-align-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.d-flex-col-just-center-align-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/***** Flex Layout Ends *****/
+
+.flat_hunting_container {
+  background: #000000;
+  min-height: 100vh;
+  width: 100%;
+}
+/***** Header Section starts *****/
+.flat_hunting_header {
+  margin: 20px 0px 20px 0px;
+}
+.house_hunting_header__icon {
+  height: 80px;
+  margin: 0px 10px 0px 0px;
+}
+.house_hunting_header__heading {
+  color: #ffffff;
+  font: 700 30px var(--themeFontFamily);
+}
+/***** Header section ends *****/
+
+/***** Form Container and Body starts *****/
+.sheet_link {
+  display: flex;
+  color: #009745;
+  margin: 10px;
+  font: 400 16px var(--themeFontFamily);
+}
+.flat_hunting_form_container {
+  max-width: 400px;
+  position: relative;
+  height: calc(100vh - 25vh);
+}
+.flat_hunting_form_body {
+  background: #0b0e15;
+  padding: 20px 20px 20px 20px;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+.flat_hunting_form__body_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+.flat_hunting_form__label_text {
+  color: #fff;
+  text-align: left;
+  font: 400 16px var(--themeFontFamily);
+  margin: 35px 0px 15px 0px;
+}
+.flat_hunting_form__action_button {
+  width: 50%;
+  border: 1px solid #fff;
+  height: 35px;
+  color: #ffffff;
+  background: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin: 0px 5px 0px 5px;
+  font: 700 16px var(--themeFontFamily);
+}
+.flat_hunting_form__action_button:hover {
+  transform: scale(0.95);
+}
+.active_state_btn_bg_color {
+  background: #ffffff;
+  color: #000;
+  border: none;
+}
+.flat_hunting_form__tab_button {
+  color: #fff;
+  text-align: center;
+  padding: 0px 0px 12px 0px;
+  font: 700 14px var(--themeFontFamily);
+  margin: 10px 10px 0px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.active_tab_button {
+  border: 1px solid #009745;
+  border-top: none;
+  color: #009745;
+  border-right: none;
+  border-left: none;
+}
+.flat_hunting_form__submit_btn {
+  margin: 15px 0px 0px 0px;
+  padding: 15px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  background: #ffffff;
+  font: 700 15px var(--themeFontFamily);
+}
+.button_disabled_state {
+  background: #1e1e1e;
+  color: #000;
+}
+.flat_hunting_form__secondary_info_textarea {
+  padding: 5px;
+  box-sizing: border-box;
+  font: 400 15px var(--themeFontFamily);
+  outline: none;
+  resize: none;
+}
+/***** Form container and body ends *****/
+
+/***** Loader starts ******/
+.loader {
+  background: rgba(0, 0, 0, 0.8);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+  top: 0px;
+  left: 0px;
+}
+.loader_icon {
+  height: 30px;
+  animation: spin 0.8s linear infinite;
+}
+.loader_text {
+  color: #ffffff;
+  margin: 10px 0px;
+  font: 400 20px var(--themeFontFamily);
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/***** Loader ends *****/
+
+/***** Responsive Section start *****/
+@media screen and (max-width: 450px) {
+  .flat_hunting_form_container {
+    max-width: 90%;
+  }
+  .flat_hunting_header {
+    margin: 10px 0px 10px 0px;
+  }
+  .house_hunting_header__icon {
+    height: 50px;
+  }
+}
+/***** Responsive section ends *****/
