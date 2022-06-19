@@ -28,12 +28,12 @@ const HouseHuntingForm: React.FC = () => {
       ...flatPrimaryInfo,
       ...objectWithTwoBreakStringKeys,
     };
-    const actualDataTopSendAs2DArray = Object.entries(finalFormData);
+    const actualDataToSendAs2DArray = Object.entries(finalFormData);
 
-    postFlatData(actualDataTopSendAs2DArray, runAfterAPICallSuccess);
+    postFlatData(actualDataToSendAs2DArray, runAfterAPICallResponse);
   };
 
-  const runAfterAPICallSuccess = (anyError: boolean) => {
+  const runAfterAPICallResponse = (anyError: boolean) => {
     if (anyError === false) {
       setShowLoader(false);
       setFlatPrimaryInfo(flatPrimaryInfoInitialState);

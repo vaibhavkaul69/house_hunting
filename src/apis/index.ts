@@ -7,7 +7,7 @@ const baseUrl = process.env.REACT_APP_SPREADSHEET_URL;
 
 const URL = `${baseUrl}${authIdForSheet}?tabId=${tabId}`;
 
-export const postFlatData = async (formData: GenericObject, functionsToRunIfApiSucceeds: FunctionWithSomeArgsReturnsUndefined) => {
+export const postFlatData = async (formData: GenericObject, functionsToRunAfterAPICallResponse: FunctionWithSomeArgsReturnsUndefined) => {
   try {
     var requestOptions: RequestInit = {
       method: 'post',
@@ -19,10 +19,10 @@ export const postFlatData = async (formData: GenericObject, functionsToRunIfApiS
     const response = await fetch(URL, requestOptions);
     const jsonResponse = await response.json();
     if (!isUndefinedOrNull(jsonResponse.message)) {
-      !isUndefinedOrNull(functionsToRunIfApiSucceeds) && functionsToRunIfApiSucceeds(false);
+      !isUndefinedOrNull(functionsToRunAfterAPICallResponse) && functionsToRunAfterAPICallResponse(false);
     }
   } catch (err) {
-    !isUndefinedOrNull(functionsToRunIfApiSucceeds) && functionsToRunIfApiSucceeds(true);
+    !isUndefinedOrNull(functionsToRunAfterAPICallResponse) && functionsToRunAfterAPICallResponse(true);
   }
 };
 

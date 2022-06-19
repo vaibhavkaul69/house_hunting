@@ -82,7 +82,7 @@ button {
 .flat_hunting_form_container {
   max-width: 500px;
   position: relative;
-  height: calc(100vh - 30vh);
+  height: calc(100vh - 20vh);
 }
 .flat_hunting_form_body {
   background: #151515;
