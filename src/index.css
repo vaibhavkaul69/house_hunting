@@ -16,6 +16,11 @@ code {
 .w-100 {
   width: 100%;
 }
+button {
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+}
 
 /***** Flex layout starts *****/
 .d-flex-row-center {
@@ -81,27 +86,57 @@ code {
   font: 400 16px var(--themeFontFamily);
 }
 .flat_hunting_form_container {
-  max-width: 400px;
+  max-width: 500px;
   position: relative;
-  height: calc(100vh - 25vh);
+  height: calc(100vh - 30vh);
 }
 .flat_hunting_form_body {
   background: #151515;
   padding: 20px 20px 20px 20px;
   border-radius: 10px;
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.flat_hunting_form_body::-webkit-scrollbar {
+  display: none;
 }
 .flat_hunting_form__body_content {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: start;
+}
+.flat_hunting_form__grid_body {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-gap: 30px;
+  grid-template-columns: repeat(2, 150px);
+}
+.flat_hunting_form__select_furnishing_action_btn {
+  width: 50%;
+  height: 35px;
+  margin: 20px 10px 20px 0px;
+  font: 700 14px var(--themeFontFamily);
+  background: transparent;
+  padding: 5px 0px;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  transition: all 0.5s ease-in-out;
+}
+.furnishing_btns_active_state {
+  background: #009745;
+  border: 1px solid #009745;
 }
 .flat_hunting_form__label_text {
   color: #fff;
   text-align: left;
   font: 400 16px var(--themeFontFamily);
-  margin: 35px 0px 15px 0px;
+  margin: 15px 0px 15px 0px;
 }
 .flat_hunting_form__action_button {
   width: 50%;
@@ -123,6 +158,16 @@ code {
   color: #000;
   border: none;
 }
+.no_selected_furnishing_icon {
+  height: 30px;
+  margin: 40px 0px 5px 0px;
+  animation: jump 0.8s alternate infinite;
+}
+.no_selected_furnishing_text {
+  font: 400 18px var(--themeFontFamily);
+  color: #ffffff;
+  margin: 0px 0px 20px 0px;
+}
 .flat_hunting_form__tab_button {
   color: #fff;
   text-align: center;
@@ -131,6 +176,7 @@ code {
   margin: 10px 10px 0px 10px;
   text-transform: uppercase;
   cursor: pointer;
+  transition: all 1s ease-in-out;
 }
 .active_tab_button {
   border: 1px solid #009745;
@@ -142,7 +188,6 @@ code {
 .flat_hunting_form__submit_btn {
   margin: 15px 0px 0px 0px;
   padding: 15px;
-  border-radius: 10px;
   outline: none;
   border: none;
   background: #ffffff;
@@ -180,6 +225,9 @@ code {
   margin: 10px 0px;
   font: 400 20px var(--themeFontFamily);
 }
+/***** Loader ends *****/
+
+/***** Animations Starts *****/
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -188,18 +236,44 @@ code {
     transform: rotate(360deg);
   }
 }
-/***** Loader ends *****/
+@keyframes jump {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+/***** Animations Ends *****/
 
 /***** Responsive Section start *****/
 @media screen and (max-width: 450px) {
   .flat_hunting_form_container {
     max-width: 90%;
   }
+  .flat_hunting_form__label_text {
+    font-size: 14px;
+  }
+  .flat_hunting_form__action_button {
+    height: 30px;
+    font-size: 12px;
+  }
   .flat_hunting_header {
     margin: 10px 0px 10px 0px;
   }
   .house_hunting_header__icon {
     height: 50px;
+  }
+  .flat_hunting_form__grid_body {
+    grid-gap: 20px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .flat_hunting_form__action_button {
+    height: 25px;
+  }
+  .flat_hunting_form__grid_body {
+    grid-gap: 10px;
   }
 }
 /***** Responsive section ends *****/

@@ -1,8 +1,9 @@
-import { FunctionWithNoArgsReturnsUndefined, FunctionWithSomeArgsReturnsUndefined, GenericObject } from '../types/house_hunting.type';
+import { FunctionWithSomeArgsReturnsUndefined, GenericObject } from '../types/house_hunting.type';
 import { getApiCallHeader, isUndefinedOrNull } from '../utils';
 
-const sheetId = 'Hunting Doc';
-const URL = `https://v1.nocodeapi.com/vaibhav/google_sheets/PJlhnrdMOwrRROrp?tabId=${sheetId}`;
+const tabId = process.env.REACT_APP_TAB_ID;
+const authIdForSheet = process.env.REACT_APP_SHEET_AUTH_ID;
+const URL = `https://v1.nocodeapi.com/vaibhav/google_sheets/${authIdForSheet}?tabId=${tabId}`;
 
 export const postFlatData = async (formData: GenericObject, functionsToRunIfApiSucceeds: FunctionWithSomeArgsReturnsUndefined) => {
   try {

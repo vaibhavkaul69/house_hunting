@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { postFlatData } from '../../apis';
-import { flatPrimaryInfoInitialState, flatSecondaryInfoInitialState, FlatInfoTab, objectWithTwoBreakStringKeys } from '../../constants';
+import { flatPrimaryInfoInitialState, flatSecondaryInfoInitialState, FlatInfoTab, objectWithTwoBreakStringKeys, Furnishing } from '../../constants';
 import { IFlatPrimaryInfo, IFlatSecondaryInfo } from '../../types/house_hunting.type';
+import { isUndefinedOrNull } from '../../utils';
 import Loader from '../loader';
 import PrimaryFlatInfoTab from '../Tabs/primary_flat_info_tab';
 import SecondaryFlatInfoTab from '../Tabs/secondary_flat_info_tab';
@@ -11,10 +12,22 @@ const HouseHuntingForm: React.FC = () => {
   const [flatSecondaryInfo, setFlatSecondaryInfo] = useState<IFlatSecondaryInfo>(flatSecondaryInfoInitialState);
   const [currentTab, setCurrentTab] = useState<FlatInfoTab>(FlatInfoTab.primary);
   const [showLoader, setShowLoader] = useState<boolean>(false);
+  const [typeOfFurnishing, setTypeOfFurnishing] = useState<Furnishing | null>(null);
+
+  useEffect(() => {
+    if (!isUndefinedOrNull(typeOfFurnishing)) {
+      const isFullyFurnished = typeOfFurnishing === Furnishing.fullFurnished ? true : false;
+      setFlatPrimaryInfo((flatPrimaryInfo) => ({ ...flatPrimaryInfo, isFullyFurnished: isFullyFurnished }));
+    }
+  }, [typeOfFurnishing]);
 
   const submitAnswers = () => {
     setShowLoader(true);
-    const finalFormData = { ...flatSecondaryInfo, ...flatPrimaryInfo, ...objectWithTwoBreakStringKeys };
+    const finalFormData = {
+      ...flatSecondaryInfo,
+      ...flatPrimaryInfo,
+      ...objectWithTwoBreakStringKeys,
+    };
     const actualDataTopSendAs2DArray = Object.entries(finalFormData);
 
     postFlatData(actualDataTopSendAs2DArray, runAfterAPICallSuccess);
@@ -26,6 +39,7 @@ const HouseHuntingForm: React.FC = () => {
       setFlatPrimaryInfo(flatPrimaryInfoInitialState);
       setFlatSecondaryInfo(flatSecondaryInfoInitialState);
       setCurrentTab(FlatInfoTab.primary);
+      setTypeOfFurnishing(null);
     } else {
       setShowLoader(false);
     }
@@ -42,10 +56,13 @@ const HouseHuntingForm: React.FC = () => {
             Flat Secondary Info
           </h2>
         </div>
-        {currentTab === FlatInfoTab.primary && <PrimaryFlatInfoTab flatPrimaryInfo={flatPrimaryInfo} setFlatPrimaryInfo={setFlatPrimaryInfo} />}
+        {currentTab === FlatInfoTab.primary && (
+          <PrimaryFlatInfoTab typeOfFurnishing={typeOfFurnishing} setTypeOfFurnishing={setTypeOfFurnishing} flatPrimaryInfo={flatPrimaryInfo} setFlatPrimaryInfo={setFlatPrimaryInfo} />
+        )}
         {currentTab === FlatInfoTab.secondary && <SecondaryFlatInfoTab flatSecondaryInfo={flatSecondaryInfo} setFlatSecondaryInfo={setFlatSecondaryInfo} />}
         {showLoader && <Loader />}
       </div>
+
       <button onClick={submitAnswers} className="flat_hunting_form__submit_btn w-100">
         Submit
       </button>

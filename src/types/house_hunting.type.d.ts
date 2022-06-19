@@ -1,6 +1,11 @@
+import { Dispatch, SetStateAction } from 'react';
+import { Furnishing } from '../constants';
+
 interface IFlatPrimaryInfo {
   hasFullEntryExit: null | boolean;
   allowFriends: null | boolean;
+  isFullyFurnished: null | boolean;
+  isElectricityBackupAvailable: null | boolean;
   hasTv: null | boolean;
   hasWashingMachine: null | boolean;
   hasFridge: null | boolean;
@@ -25,30 +30,38 @@ interface IFlatSecondaryInfo {
   location: null | string;
   brokerInfo: null | string;
   propertyNameOrLink: null | string;
+  extraComments: null | string;
 }
 
 interface IFlatInfoInputData {
   text: string;
   key: string;
+  metadata?: GenericObject;
 }
 
 interface IPrimaryFlatIntoTabProp {
   flatPrimaryInfo: IFlatPrimaryInfo;
   setFlatPrimaryInfo: Dispatch<SetStateAction<IFlatPrimaryInfo>>;
+  typeOfFurnishing: Furnishing | null;
+  setTypeOfFurnishing: Dispatch<SetStateAction<Furnishing | null>>;
 }
 
 interface ISecondaryFlatIntoTabProp {
   flatSecondaryInfo: IFlatSecondaryInfo;
-  setFlatSecondaryInfo: Dispatch<SetStateAction<IFlatPrimaryInfo>>;
+  setFlatSecondaryInfo: Dispatch<SetStateAction<IFlatSecondaryInfo>>;
 }
 
-export interface GenericObject {
+interface GenericObject {
   [key: string]: any;
   hasOwnProperty: any;
 }
 
-export type IFlatFormData = IFlatPrimaryInfo & IFlatSecondaryInfo;
+interface IPrimaryFlatOptionsOptionProps {
+  options: Array<IFlatInfoInputData>;
+  setFlatPrimaryInfo: Dispatch<SetStateAction<IFlatPrimaryInfo>>;
+  flatPrimaryInfo: IFlatPrimaryInfo;
+}
 
-export type FunctionWithNoArgsReturnsUndefined = () => void;
+export type IFlatFormData = IFlatPrimaryInfo & IFlatSecondaryInfo;
 
 export type FunctionWithSomeArgsReturnsUndefined = (args: any) => void;

@@ -2,6 +2,7 @@ import { IFlatInfoInputData, IFlatPrimaryInfo, IFlatSecondaryInfo } from './type
 
 export const flatPrimaryInfoInitialState: IFlatPrimaryInfo = {
   hasTv: null,
+  isFullyFurnished: null,
   hasWashingMachine: null,
   hasFridge: null,
   hasPipedGasSupply: null,
@@ -19,6 +20,7 @@ export const flatPrimaryInfoInitialState: IFlatPrimaryInfo = {
   hasCarParking: null,
   hasCupboard: null,
   hasFullWaterSupply: null,
+  isElectricityBackupAvailable: null,
 };
 
 export const flatSecondaryInfoInitialState: IFlatSecondaryInfo = {
@@ -29,16 +31,17 @@ export const flatSecondaryInfoInitialState: IFlatSecondaryInfo = {
   finalDepostiAmount: null,
   finalBrokerCharges: null,
   brokerInfo: null,
+  extraComments: null,
 };
 
-export const commonAmmenetiesForFurnishedAndSemiFurnished = [
+export const flatPrimaryInfoInputDataIfSemiFurnished = [
   {
-    text: 'Has 24x7 Water Supply',
+    text: 'Is 24x7 Entry Exit allowed',
     key: 'hasFullEntryExit',
   },
   {
-    text: 'Allows friends and other guests any time',
-    key: 'allowFriends',
+    text: 'Is Electricity backup Available',
+    key: 'isElectricityBackupAvailable',
   },
   {
     text: 'Has Car Parking',
@@ -52,37 +55,24 @@ export const commonAmmenetiesForFurnishedAndSemiFurnished = [
     text: 'Has 24x7 Water Supply',
     key: 'hasFullWaterSupply',
   },
+  {
+    text: 'Allows friends and other guests any time',
+    key: 'allowFriends',
+  },
 ];
 
 export const flatPrimaryInfoInputDataIfFurnished: Array<IFlatInfoInputData> = [
-  ...commonAmmenetiesForFurnishedAndSemiFurnished,
   {
     text: 'Has TV',
     key: 'hasTv',
-  },
-  {
-    text: 'Has Washing Machine',
-    key: 'hasWashingMachine',
   },
   {
     text: 'Has Fridge',
     key: 'hasFridge',
   },
   {
-    text: 'Has Gas Piped Supply',
-    key: 'hasPipedGasSupply',
-  },
-  {
     text: 'Has RO Installed',
     key: 'hasRO',
-  },
-  {
-    text: 'Has gas Stove / Induction',
-    key: 'hasGasStoveOrInduction',
-  },
-  {
-    text: 'Has Bed With Mattress',
-    key: 'hasBedWithMattress',
   },
   {
     text: 'Has Sofa Set',
@@ -96,42 +86,85 @@ export const flatPrimaryInfoInputDataIfFurnished: Array<IFlatInfoInputData> = [
     text: 'Has Study Table',
     key: 'hasStudyTable',
   },
-
   {
     text: 'Has Gyesier Installed',
     key: 'hasGyesierInstalled',
   },
+  {
+    text: 'Has Washing Machine',
+    key: 'hasWashingMachine',
+  },
+  {
+    text: 'Has gas Stove / Induction',
+    key: 'hasGasStoveOrInduction',
+  },
+  {
+    text: 'Has Bed With Mattress',
+    key: 'hasBedWithMattress',
+  },
+  {
+    text: 'Has Gas Piped Supply',
+    key: 'hasPipedGasSupply',
+  },
+  ...flatPrimaryInfoInputDataIfSemiFurnished,
 ];
 
 export const flatSecondaryInfoInputData: Array<IFlatInfoInputData> = [
   {
     text: 'Property Name / Link',
     key: 'propertyNameOrLink',
+    metadata: {
+      cols: 1,
+    },
   },
   {
     text: 'Location',
     key: 'location',
+    metadata: {
+      cols: 1,
+    },
   },
   {
     text: 'Distance From Office',
     key: 'distanceFromOffice',
+    metadata: {
+      cols: 1,
+    },
   },
   {
     text: 'Final Monthly Rent',
     key: 'finalMontlhyRent',
+    metadata: {
+      cols: 1,
+    },
   },
   {
     text: 'Final Deposit Amount',
     key: 'finalDepostiAmount',
+    metadata: {
+      cols: 1,
+    },
   },
   {
     text: 'Final Broker Charges',
     key: 'finalBrokerCharges',
+    metadata: {
+      cols: 1,
+    },
   },
-
   {
     text: 'Broker Info',
     key: 'brokerInfo',
+    metadata: {
+      cols: 3,
+    },
+  },
+  {
+    text: 'Extra Comments',
+    key: 'extraComments',
+    metadata: {
+      cols: 3,
+    },
   },
 ];
 
@@ -150,5 +183,4 @@ export enum Furnishing {
 export const objectWithTwoBreakStringKeys = {
   '*********': '*********',
   '*************': '**********',
-  '****************': '************',
 };

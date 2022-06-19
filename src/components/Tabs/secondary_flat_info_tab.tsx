@@ -1,6 +1,6 @@
 import React from 'react';
 import { flatSecondaryInfoInputData } from '../../constants';
-import { IFlatInfoInputData, IFlatPrimaryInfo, ISecondaryFlatIntoTabProp } from '../../types/house_hunting.type';
+import { IFlatInfoInputData, IFlatSecondaryInfo, ISecondaryFlatIntoTabProp } from '../../types/house_hunting.type';
 import '../../index.css';
 
 const SecondaryFlatInfoTab: React.FC<ISecondaryFlatIntoTabProp> = ({ setFlatSecondaryInfo, flatSecondaryInfo }) => {
@@ -14,9 +14,14 @@ const SecondaryFlatInfoTab: React.FC<ISecondaryFlatIntoTabProp> = ({ setFlatSeco
               {flat.text}
             </h3>
             <textarea
-              rows={3}
+              rows={flat.metadata.cols}
               value={flatSecondaryInfo[flat.key]}
-              onChange={(e) => setFlatSecondaryInfo((flatInfo: IFlatPrimaryInfo) => ({ ...flatSecondaryInfo, [flat.key]: e.target.value }))}
+              onChange={(e) =>
+                setFlatSecondaryInfo((flatInfo: IFlatSecondaryInfo) => ({
+                  ...flatSecondaryInfo,
+                  [flat.key]: e.target.value,
+                }))
+              }
               className="w-100 flat_hunting_form__secondary_info_textarea"
             ></textarea>
           </div>

@@ -1,39 +1,43 @@
 import React from 'react';
-import { flatPrimaryInfoInputDataIfFurnished } from '../../constants';
-import { IFlatInfoInputData, IFlatPrimaryInfo, IPrimaryFlatIntoTabProp } from '../../types/house_hunting.type';
+import { flatPrimaryInfoInputDataIfFurnished, flatPrimaryInfoInputDataIfSemiFurnished, Furnishing } from '../../constants';
+import { IPrimaryFlatIntoTabProp } from '../../types/house_hunting.type';
 import '../../index.css';
+import PrimaryFlatInfoOptions from './primary_flat_info_options';
+import Arrow from '../../assets/icons/up-arrow.png';
 
-const PrimaryFlatInfoTab: React.FC<IPrimaryFlatIntoTabProp> = React.memo(({ flatPrimaryInfo, setFlatPrimaryInfo }) => {
+const PrimaryFlatInfoTab: React.FC<IPrimaryFlatIntoTabProp> = React.memo(({ flatPrimaryInfo, setFlatPrimaryInfo, typeOfFurnishing, setTypeOfFurnishing }) => {
   return (
     <section className="">
-      {flatPrimaryInfoInputDataIfFurnished.map((flat: IFlatInfoInputData, index: number) => {
-        return (
-          <div key={flat.key} className="flat_hunting_form__body_content">
-            <h3 className="flat_hunting_form__label_text d-flex-row-just-start-align-start">
-              <strong>{index + 1}.&nbsp;</strong>
-              {flat.text}
-            </h3>
-            <div className="d-flex-row-center w-100">
-              <button
-                onClick={() => setFlatPrimaryInfo((flatInfo: IFlatPrimaryInfo) => ({ ...flatInfo, [flat.key]: true }))}
-                className={`flat_hunting_form__action_button d-flex-row-center 
-                    ${flatPrimaryInfo[flat.key] === true && 'active_state_btn_bg_color'}
-                `}
-              >
-                Yes
-              </button>
-              <button
-                onClick={() => setFlatPrimaryInfo((flatInfo: IFlatPrimaryInfo) => ({ ...flatInfo, [flat.key]: false }))}
-                className={`flat_hunting_form__action_button d-flex-row-center 
-                    ${flatPrimaryInfo[flat.key] === false && 'active_state_btn_bg_color'}
-                `}
-              >
-                No
-              </button>
-            </div>
-          </div>
-        );
-      })}
+      <div className="flat_hunting_form__select_furnishing w-100 d-flex-row-center">
+        <button
+          className={`flat_hunting_form__select_furnishing_action_btn ${typeOfFurnishing === Furnishing.semiFurnished ? 'furnishing_btns_active_state' : ''}`}
+          onClick={() => setTypeOfFurnishing(Furnishing.semiFurnished)}
+        >
+          Semi Furnished
+        </button>
+        <button
+          className={`flat_hunting_form__select_furnishing_action_btn ${typeOfFurnishing === Furnishing.fullFurnished ? 'furnishing_btns_active_state' : ''}`}
+          onClick={() => setTypeOfFurnishing(Furnishing.fullFurnished)}
+        >
+          Fully Furnished
+        </button>
+      </div>
+      {typeOfFurnishing === Furnishing.fullFurnished && (
+        <div className="flat_hunting_form__grid_body">
+          <PrimaryFlatInfoOptions options={flatPrimaryInfoInputDataIfFurnished} flatPrimaryInfo={flatPrimaryInfo} setFlatPrimaryInfo={setFlatPrimaryInfo} />
+        </div>
+      )}
+      {typeOfFurnishing === Furnishing.semiFurnished && (
+        <div className="flat_hunting_form__grid_body">
+          <PrimaryFlatInfoOptions options={flatPrimaryInfoInputDataIfSemiFurnished} flatPrimaryInfo={flatPrimaryInfo} setFlatPrimaryInfo={setFlatPrimaryInfo} />
+        </div>
+      )}
+      {typeOfFurnishing === null && (
+        <div className="d-flex-col-just-center-align-center">
+          <img src={Arrow} className="no_selected_furnishing_icon" alt="Arrow pointing above" />
+          <h2 className="no_selected_furnishing_text">Select a furnishing type above..</h2>
+        </div>
+      )}
     </section>
   );
 });
