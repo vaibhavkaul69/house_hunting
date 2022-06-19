@@ -79,12 +79,6 @@ button {
 /***** Header section ends *****/
 
 /***** Form Container and Body starts *****/
-.sheet_link {
-  display: flex;
-  color: #009745;
-  margin: 10px;
-  font: 400 16px var(--themeFontFamily);
-}
 .flat_hunting_form_container {
   max-width: 500px;
   position: relative;

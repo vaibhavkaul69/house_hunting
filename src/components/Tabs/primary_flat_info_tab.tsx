@@ -1,5 +1,5 @@
 import React from 'react';
-import { flatPrimaryInfoInputDataIfFurnished, flatPrimaryInfoInputDataIfSemiFurnished, Furnishing } from '../../constants';
+import { flatPrimaryInfoInputDataIfFullyFurnished, flatPrimaryInfoInputDataIfSemiFurnished, Furnishing } from '../../constants';
 import { IPrimaryFlatIntoTabProp } from '../../types/house_hunting.type';
 import '../../index.css';
 import PrimaryFlatInfoOptions from './primary_flat_info_options';
@@ -24,7 +24,7 @@ const PrimaryFlatInfoTab: React.FC<IPrimaryFlatIntoTabProp> = React.memo(({ flat
       </div>
       {typeOfFurnishing === Furnishing.fullFurnished && (
         <div className="flat_hunting_form__grid_body">
-          <PrimaryFlatInfoOptions options={flatPrimaryInfoInputDataIfFurnished} flatPrimaryInfo={flatPrimaryInfo} setFlatPrimaryInfo={setFlatPrimaryInfo} />
+          <PrimaryFlatInfoOptions options={flatPrimaryInfoInputDataIfFullyFurnished} flatPrimaryInfo={flatPrimaryInfo} setFlatPrimaryInfo={setFlatPrimaryInfo} />
         </div>
       )}
       {typeOfFurnishing === Furnishing.semiFurnished && (

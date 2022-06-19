@@ -61,7 +61,7 @@ export const flatPrimaryInfoInputDataIfSemiFurnished = [
   },
 ];
 
-export const flatPrimaryInfoInputDataIfFurnished: Array<IFlatInfoInputData> = [
+export const flatPrimaryInfoInputDataIfFullyFurnished: Array<IFlatInfoInputData> = [
   {
     text: 'Has TV',
     key: 'hasTv',

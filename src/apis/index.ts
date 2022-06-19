@@ -3,7 +3,9 @@ import { getApiCallHeader, isUndefinedOrNull } from '../utils';
 
 const tabId = process.env.REACT_APP_TAB_ID;
 const authIdForSheet = process.env.REACT_APP_SHEET_AUTH_ID;
-const URL = `https://v1.nocodeapi.com/vaibhav/google_sheets/${authIdForSheet}?tabId=${tabId}`;
+const baseUrl = process.env.REACT_APP_SPREADSHEET_URL;
+
+const URL = `${baseUrl}${authIdForSheet}?tabId=${tabId}`;
 
 export const postFlatData = async (formData: GenericObject, functionsToRunIfApiSucceeds: FunctionWithSomeArgsReturnsUndefined) => {
   try {

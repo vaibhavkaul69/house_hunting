@@ -13,9 +13,6 @@ const HouseHuntingContainer: React.FC = () => {
       </header>
       <HouseHuntingForm />
       <HouseHuntingLeads />
-      <a className="sheet_link" href="https://docs.google.com/spreadsheets/d/1WlZGcfQUHOCsDL98KK-LDwY3Sb5KlgOeTKj7bWBSuVc/edit?usp=sharing">
-        Link To Sheet
-      </a>
     </section>
   );
 };
