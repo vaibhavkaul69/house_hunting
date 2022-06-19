@@ -63,9 +63,11 @@ const HouseHuntingForm: React.FC = () => {
         {showLoader && <Loader />}
       </div>
 
-      <button onClick={submitAnswers} className="flat_hunting_form__submit_btn w-100">
-        Submit
-      </button>
+      {typeOfFurnishing !== null && (
+        <button onClick={submitAnswers} className="flat_hunting_form__submit_btn w-100">
+          Submit
+        </button>
+      )}
     </div>
   );
 };
